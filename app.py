@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from os import getenv
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, jsonify
 from flask_pymongo import PyMongo
 
 # Load environment variables
@@ -15,15 +15,27 @@ app.config['MONGO_URI'] = getenv('MONGO_URI', '')
 # Use PyMongo to establish Mongo connection
 mongo = PyMongo(app)
 
-# Route to render index.html template using data from Mongo
 @app.route("/")
-def home():
-
+def index():
     # Find one record of data from the mongo database
-    destination_data = mongo.db.collection.find_one()
+    destination_data = mongo.db.test.find_one()
 
-    # Return template and data
-    return render_template("index.html", vacation=destination_data)
+    return render_template("index.html", song=destination_data)
+
+# Route that will trigger the scrape function
+@app.route("/api")
+def api():
+    # data1 = mongo["covid_db"].covid.find({}, {'_id': False})
+    data1= mongo.db.test.find({}, {'_id': False})
+
+    cases = [case for case in data1]
+    data = {
+
+    "cases": cases
+    }
+
+    return jsonify(data)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
