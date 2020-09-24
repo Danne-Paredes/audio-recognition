@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Genre Classification using Machine Learning</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+
+  <!-- Favicons -->
+  <link rel="icon" href="{{ url_for('static',filename='images/favicon.png') }}">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/icofont/icofont.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/boxicons/css/boxicons.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/remixicon/remixicon.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/venobox/venobox.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/owl.carousel/assets/owl.carousel.min.css') }}">
+
+
+  <!-- Template Main CSS File -->
+  <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static',filename='css/prism.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container-fluid">
+
+      <div class="row justify-content-center">
+        <div class="col-xl-9 d-flex align-items-center justify-content-between">
+          <!-- <h1 class="logo"><a href="index.html">Machine Learning<br>Spotify Genres</a></h1> -->
+          <a href="index.html" class="logo"><img src="{{ url_for('static',filename='images/logo.png') }}" alt="" class="img-fluid"></a>
+
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="#brief">Brief</a></li>
+              <li><a href="#spotify">Spotify API Call</a></li>
+              <li><a href="#data_transformation">Data Transformation</a></li>
+              <li><a href="#data-pre-processing">Data Pre-processing</a></li>
+              <li><a href="#pricing">Machine Learning</a></li>
+              <li><a href="#contact">The Team</a></li>
+
+            </ul>
+          </nav><!-- .nav-menu -->
+
+          <a href="https://github.com/KathrynPanger/classify-spotify" target="_blank" class="get-started-btn scrollto">Github Repo</a>
+        </div>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="typewriter">
+          <h1>Machine Learning: Genre Classification</h1>
+          <h2>A project to build a 'Trained Classifier' to identify a song's genre</h2>
+          <!-- <a href="https://www.youtube.com/watch?v=571BuZeeQjE" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a> -->
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="brief" class="about">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Brief</h2>
+          <p>We all know that musical genres are a way to tag and identify different types of music. But what most people don't know, is that basic genres have key defining features, that help us to identify them - and so the team's project idea was born...<br><br>The team's objective
+            was to use machine learning to build its very own 'Trained Classifier', that would use machine learning to identify a given song’s musical genre. The musical genres in-scope for this project were: <b>Reggae Rock,
+            Jazz, Pop, Blues, Classical, Country, Disco, Hip-Hop.</b> </p>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6">
+            <p>
+              The team broke down the process of creating and training the Trained Classifier into the following high-level steps:<br><br>
+            </p>
+            <ul>
+              <li><i class="ri-spotify-fill"></i> <b>Spotify API Call</b> - utilizing the 'spotipy' library to call Spotify's API in order to pull track information data (inc. URLs to audio clips) for the musical genres in-scope.<br><br><br></li>
+              <li><i class="ri-merge-cells-horizontal"></i> <b>Data Transformation</b> - transformating the API collected data, prior to data pre-processing.<br><br><br></li>
+              <li><i class="ri-voiceprint-fill"></i> <b>Pre-processing of data using Librosa</b> - downloading and extracting each audio clip's 6 key audio class features, before saving in a DataFrame, ready for machine learning.</b><br><br><br> </li>
+              <li><i class="ri-eye-2-line"></i> <b>Machine learning using sklearn</b> - harnessing the power of sklearn to train our Trained Classifier.</b><br><br><br> </li>
+              <li><i class="ri-bug-line"></i> <b>Testing</b> - finally a testing regime will let us analize weather the Trained Classifier.</b><br><br></li>
+            </ul>
+          </div>
+          <div class="image col-lg-6 pt-4 pt-lg-0" style='background-image: url("assets/img/flow_chart.gif");'></div>
+
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Dependencies Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container">
+        <h4><b>Our dependencies</b></h4>
+
+        <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-blank.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-10.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-9.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-blank.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </section><!-- End Dependencies Section -->
+
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+          <div class="container">
+
+            <div class="row">
+              <div class="col-lg-9 text-center text-lg-left">
+                <h3>Spotify facts...</h3>
+                <p>• <b><span class="spotify_green">Founded in 2008</span></b>, but didn't launch until 2011<br>
+                • Has over <b><span class="spotify_green">286 million monthly active users</span></b> as of April 2020.<br>
+                • Spotify’s <b><span class="spotify_green">free accounts were once available through invitations</span></b> only to control its growth.
+              </p>
+              </div>
+              <div class="col-lg-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="https://developer.spotify.com/documentation/web-api/" target="_blank">Visit Spotify's API</a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+    <!-- End Cta Section -->
+
+    <!-- ======= Spotify API Section ======= -->
+    <section id="spotify" class="features">
+      <div class="container">
+        <div class="section-title">
+
+
+          <h2>Spotify API Call</h2>
+          <p>With a track catelog spanning in excess of 30 million songs, the team quickly reached
+            concensus that Spotify's API provided the most robust and well curated universe of track information and
+            was chosen. Additionally, Spotify also provides 30-sec samples for each cateloged song, thus providing the
+            team with a source of track mp3 samples to use for trainined the Trained Classifier. Each team member chosen
+            2 musical genres of personal interest, before completing steps to call Spotify's API -
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-13 order-2 order-lg-1">
+            <div class="icon-box mt-5 mt-lg-0">
+              <i class="bx bx-slider-alt"></i>
+
+              <h4>Step 1 - setup</h4>
+              <p>The required dependencies were imported including:<br><br><b>(i) Spotipy</b> - a lightweight Python library for
+                accessing the Spotify Web API.<br><br><b>(ii) Pandas</b> - utilized for turning returned API Call
+                data into DataFrames, prior to data transformation.</p>
+              <pre>
+                <code class="language-python">
+                  import spotipy
+                  from spotipy.oauth2 import SpotifyClientCredentials
+                  import pandas as pd
+                </code>
+              </pre>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-data"></i>
+              <h4>Step 2 - API call</h4>
+              <p>By using the 'reccomendation' parameter, the team were able to return track information for a chosen genre,
+              whilst keeping the return limit to 100, in order to avoid reaching the Spotify API call limits and avoid timeouts.</p>
+              <pre>
+                <code class="language-python">
+                  from config import cid
+                  from config import secret
+                  client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
+                  sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+                  randoms = sp.recommendations(seed_genres=['rock'], limit=100)
+                </code>
+              </pre>
+
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-list-plus"></i>
+              <h4>Step 3 - storage & verification of returned data</h4>
+              <p>Using Pandas, each track element (e.g 'artist') was saved to a namesake list, prior to relevant track information
+              being written to a .csv file, for reference purposes.</p>
+              <pre>
+                <code class="language-python">
+                  tracks_preview = []
+                  tracks_genre = []
+                  tracks_name = []
+                  tracks_id = []
+                  tracks_artist = []
+                  for album_ind in range(0, 100):
+                      tracks_genre.append(randoms['seeds'][0]['id'])
+                      tracks_name.append(randoms['tracks'][album_ind]['name'])
+                      tracks_id.append(randoms['tracks'][album_ind]['id'])
+                      tracks_preview.append(randoms['tracks'][album_ind]['preview_url'])
+                </code>
+              </pre>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-import"></i>
+              <h4>Step 4 - preparing for data transformation</h4>
+              <p>The .csv files were then imported as DataFrames to Jupyter Lab, ready for data transformation. </p>
+              <pre>
+                <code class="language-python">
+                  df5 = pd.DataFrame({'Genre':tracks_genre,'Track Name' : tracks_name, 'Track ID' : tracks_id, 'Preview_link' : tracks_preview})
+                  df5.to_csv("rock/rock_dataframe_5.csv", index=False)                </code>
+              </pre>
+            </div>
+          </div>
+          <!-- <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/api_code_example.gif");'></div> -->
+        </div>
+      </div>
+    </section><!-- End Spotify API Section -->
+
+    <!-- ======= Spotify API Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="text-center title">
+          <h3>Spotify API Stats</h3>
+          <p>Here's a snapshot of the data the team captured, during the API Calls...</p>
+        </div>
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">6</span>
+            <p>Team members</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">1415</span>
+            <p>Tracks</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">5094</span>
+            <p>Playback (hrs)</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">132,000</span>
+            <p>Collected Audio Features</p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Spotify API Section -->
+
+    <!-- ======= Data Transformation Section ======= -->
+    <section id="data_transformation" class="data_transformation">
+      <div class="container">
+        <div class="section-title">
+          <h2>Data Transformation</h2>
+          <p>Prior to the pre-processing of track data, for the purpose of machine learning, some basic
+             data transformation was performed, to ensure data integrity and accuracy:<br><br></p>
+
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <div class="icon-box mt-5 mt-lg-0">
+              <i class="bx bx-layer-minus"></i>
+              <h4>Dropping duplicates</h4>
+              <p>Some audio tracks appear in Spotify's catelog multiple times for various valid reasons,
+              these duplicates were dropped from their respective dataframes.</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-list-minus"></i>
+              <h4>Purging obsolete data columns</h4>
+              <p>Whilst all API collected data served a surpose for referencing purpose, these now obsolete
+              data columns were purged.</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-fullscreen"></i>
+              <h4>Removing white space</h4>
+              <p>Datapoints, such as 'track names' and 'preview URLs' contained white space, that required
+              to be removed.</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-horizontal-center"></i></i>
+              <h4>Dataframe Joins</h4>
+              <p>Once data transformation was completed, some dataframes      were merged, in preparation
+              for Data Pre-processing.</p>
+            </div>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/code_shot_3.jpg");'></div>
+        </div>
+
+      </div>
+    </section><!-- End Data Transformation Section -->
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta1" class="cta1">
+          <div class="container">
+
+            <div class="row">
+              <div class="col-lg-9 text-center text-lg-left">
+                <h3>Spotify API Facts</h3>
+                <p> "Data Science to me, is about bringing order to complexity"</p>
+              </div>
+              <div class="col-lg-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="#">Contact William</a>
+              </div>
+            </div>
+          </div>
+        </section>
+    <!-- End Cta Section -->
+
+    <!-- ======= Data Pre-processing Section ======= -->
+    <section id="data-pre-processing" class="data-pre-processing">
+      <div class="container-fluid">
+
+        <div class="row">
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+            <div class="content">
+              <h3><strong>Data Pre-processing</strong></h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+              </p>
+            </div>
+
+            <div class="accordion-list">
+              <ul>
+                <li>
+                  <a data-toggle="collapse" class="collapse" href="#accordion-list-1">1. Setup & Importing Dependencies<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-1" class="collapse show" data-parent=".accordion-list">
+                    <p>
+                      As the team prepared for data pre-processing, Juypter Lab (the previously used IDE) was quickly identified as having  limitations (namely with regard to being
+                      collaborative), so instead we efficiently migrated to Google Colab &#127881; and <code class="language-python">pip installed</code> and imported our dependencies.
+                      <pre>
+                        <code class="language-python">
+                          import pandas as pd
+                          import librosa
+                          from librosa.core import istft
+                          import librosa.display
+                          import IPython.display as ipd
+                          import skimage
+                          from skimage import io
+                          import numpy as np
+                          import matplotlib.pyplot as plt
+                          import sklearn
+                       </code>
+                     </pre>
+
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <a data-toggle="collapse" href="#accordion-list-2" class="collapsed">2. Creating a base DataFrame <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-2" class="collapse" data-parent=".accordion-list">
+                    <p>
+                      Before data could be prepared and pre-processed for machine learning, a DataFrame <code class="language-python">basedata</code>
+                      was required to house both computed <b>Mel-frequency cepstral coefficients</b>
+                       (we prefer calling them <b>‘MFCC’</b> personally! &#128521;
+
+                      <pre>
+                        <code class="language-python">
+                       # Creating our base DataFrame with column heading
+                       basedata = {"Genre":[],
+                                   "Chroma Feature":[],
+                                   "Zero-Crossing Rate":[],
+                                   "Spectral Bandwidth":[],
+                                   "Root Mean Square Energy (RSME)":[],
+                                   "Spectral Rolloff":[],
+                                   "Spectral Centroid":[]
+                                   }
+                       # Providing slots for each MFCC value, in the ‘Genre’ dictionary
+                       for i in range(0,30):
+                       mfcc_title = f"mfcc({i})"
+                       mfcc_value = []
+                       basedata[mfcc_title] = mfcc_value
+                       basedata
+                        </code>
+                      </pre>
+                    </p>
+                  </div>
+                </li>
+
+                <li>
+                  <a data-toggle="collapse" href="#accordion-list-3" class="collapsed">3. Audio Feature extraction using Spectrograms <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-3" class="collapse" data-parent=".accordion-list">
+                    <p>
+                      With a dictionary created to store the extracted audio features for each MP3, the next step was to extract the audio features, by means of a Spectrogram.
+                      <br><br> A function was created that would take an MP3 file and render a Spectrogram, before the function would extract the following audio (i) Spectral Centroid
+                      (ii) Spectral Roll-off (iii) Spectral Bandwidth (iv) Chroma Feature (v) Root-mean-square deviation (RMSD) (vi) Mel-frequency cepstrum coefficients (MFCC)</b>.
+                      Once extracted, the team would decide which audio features would be used for machine learning:<br><br>
+                        <span class="greenText">(&#10004;)</span> The first task was to create a function <code class="language-python">scale_minmax</code> that defines the scale of our the spectrogram.<br>
+                        <pre>
+                          <code class="language-python">
+                            def scale_minmax(X, min=0.0, max=1.0):
+                                X_std = (X - X.min()) / (X.max() - X.min())
+                                X_scaled = X_std * (max - min) + min
+                                return X_scaled
+                            </code>
+                          </pre>
+                      <span class="greenText">(&#10004;)</span> The <code class="language-python">create_spec</code> function was then created to <b>(i)</b> loop through MP3 files it is served <b>(ii)</b> break the MP3 into 30 equal segments,
+                       of 1-second in length <b>(iii)</b> before the mean of each auto feature (e.g MFCC) was computed <b>(iv)</b> and appended to the <code class="language-python">basedata</code> dictionary,
+                        specifically the nested lists.<br><br>
+                        <pre>
+                          <code class="language-python" style="height: 5em">
+                            #create function for spectogram plot without visualization (for performance purposes)
+                            def create_spec(file):
+
+                              x , sr = librosa.load(file)
+
+                              sps = sr
+                              spt = sr*30
+                              global basedata
+
+                              for i in range(0,30):
+                              start2=0
+                              end2=sr*30
+                              start2=sr*15
+                              X2 = x[(start2):(start2+sr)]
+
+                              X = librosa.stft(X2)
+                              Xdb = librosa.amplitude_to_db(abs(X))
+
+                              spectral_centroids = librosa.feature.spectral_centroid(x,  sr=sr)
+                              sc_title = f"Spectral Centroid"
+                              sc_value = [spectral_centroids]
+                              basedata[sc_title] = sc_value
+
+                              rmse = librosa.feature.rmse(x)
+                              print(rmse)
+                              rsme_title = f"RSME"
+                              sme_value = [rmse]
+                              basedata[rsme_title] = rsme_value
+
+
+                              spectral_rolloff = librosa.feature.spectral_rolloff(x, sr=sr)
+                              sr_title = f"Spectral Rolloff"
+                              sr_value = [np.mean([spectral_rolloff])]
+                              basedata[sr_title] = sr_value
+
+                              spectral_bandwidth = librosa.feature.spectral_bandwidth(x, sr=sr)
+                              sb_title = f"Spectral Bandwidth"
+                              sb_value = [np.mean([spectral_bandwidth])]
+                              basedata[sb_title] = sb_value
+
+                              zcr = librosa.feature.zero_crossing_rate(x)
+                              zcr_title = f"Zero-Crossing Rate"
+                              zcr_value = [np.mean([zcr])]
+                              basedata[zcr_title] = zcr_value
+
+                              chromagram = librosa.feature.chroma_stft(x, sr=sr)
+                              # # print(chromagram)
+                              # cf_title = f"Chroma Feature"
+                              # cf_value = np.mean([chromagram])
+                              # basedata[cf_title] = cf_value
+
+                              basedata["Genre"].append("rock")
+                              basedata["Chroma Feature"].append(np.mean([chromagram]))
+                              basedata["Zero-Crossing Rate"].append(np.mean([zcr]))
+                              basedata["Spectral Bandwidth"].append(np.mean([spectral_bandwidth]))
+                              basedata["Root Mean Square Energy (RSME)"].append(np.mean([rmse]))
+                              basedata["Spectral Rolloff"].append(np.mean([spectral_rolloff]))
+                              basedata["Spectral Centroid"].append(np.mean([spectral_centroids]))
+
+                            #Break song into 30 equal segments, each 1 second long, and loop through (with different settings)
+                              for i in range(0,30):
+                                  start_sample=sr*i
+                                  window = x[(start_sample):(start_sample+sr)]
+                                  X = librosa.stft(window)
+                                  Xdb = librosa.amplitude_to_db(abs(X))
+                                  Xdb = istft(Xdb)
+
+                                  #find Mel frequency cepstral coefficients
+                                  mfcc = librosa.feature.mfcc(window, sr)
+                                  mfcc = mfcc.T
+                                  mfcc_title = f"mfcc({i})"
+                                  print(mfcc[i])
+                                  mfcc_value = [mfcc[i]]
+                                  basedata[mfcc_title].append(np.mean(mfcc_value))
+                          </code>
+                        </pre>
+
+                        <br><span class="greenText">(&#10004;)</span> The team then utilized the <code class="language-python">glob</code> Python library. For this intended application, <code class="language-python">glob</code>  was selected as a
+                        preferred way to search a predefined directory for any files that conformed to a specific syntax (in this case ‘.MP3’ files from a local dir), before introducing them to the
+                        <code class="language-python">create_spec</code> function.<br>
+
+                      <pre>
+                        <code class="language-python">
+                          import glob
+                          gyo= ["blues","classical","country","disco","h_metal","hiphop","jazz","pop","reggae","rock"]
+
+                          for g in genres:
+                              pathlib.Path(f'img_data/{g}').mkdir(parents=True, exist_ok=True)
+                              for filename in os.listdir(f'./drive/My Drive/FinalDataProject/test_mp3/{g}'):
+                                  songname = f'./drive/My Drive/FinalDataProject/test_mp3/{g}/{file}'
+                                  create_spec(file, g)
+                                  base_df.to_csv(f'drive/My Drive/FinalDataProject/Machine/({g})_machine_6.csv', index=False)
+                        </code>
+                      </pre>
+                    </p>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/data-pre-processing.jpg");'>&nbsp;</div>
+        </div>
+
+      </div>
+    </section><!-- End Data Pre-processing Section -->
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta2" class="cta2">
+          <div class="container">
+
+            <div class="row">
+              <div class="col-lg-9 text-center text-lg-left">
+                <h3>Spotify API Facts</h3>
+                <p> "Data Science to me, is about bringing order to complexity"</p>
+              </div>
+              <div class="col-lg-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="#">Contact William</a>
+              </div>
+            </div>
+          </div>
+        </section>
+    <!-- End Cta Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>The Team</h2>
+          <p><b>Thank you...</b>for taking the time to come on a journey of Machine Learning discovery with us.
+            This project is the culmination of a 6-month intensive Data Analytics Boot Camp, run by U.C Davis.<br><br>If
+          you have any questions or feedback on this project, we'd love to here from you...</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="box">
+              <img src="assets/img/team/william.png">
+              <h3>William Forsyth</h3>
+              <div class="social">
+            <a class="social-icon" data-tooltip="williamtcforsysth@icloud.com" href="mailto:williamtcforsysth@icloud.com">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            </a>
+
+            <a class="social-icon" data-tooltip="SaltireSequence" href="https://github.com/saltiresequence", target="blank">
+              <i class="fa fa-github" aria-hidden="true"></i>
+            </a>
+
+            <a class="social-icon" data-tooltip="williamtcforsyth" href="https://www.linkedin.com/in/williamtcforsyth", target="blank">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </div>
+              <div class="btn-wrap">
+                <a href="mailto:williamtcforsyth@icloud.com" class="btn-buy">Contact Me</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+            <div class="box">
+              <img src="assets/img/team/danne.png">
+              <h3>Danne Paredes</h3>
+              <a class="social-icon" data-tooltip="email@gmail.com" href="#">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="HotAsPho" href="https://github.com/HotAsPho", target="blank">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="danne-paredes-70bb4756" href="https://www.linkedin.com/in/danne-paredes-70bb4756/", target="blank">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Contact Me</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+            <div class="box">
+              <img src="assets/img/team/heesung.png">
+              <h3>Heesung Shin</h3>
+              <a class="social-icon" data-tooltip="hsshim@ucdavis.edu" href="mailto:hsshim@ucdavis.edu">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="Heesung80" href="https://github.com/Heesung80", target="blank">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="heesung-shim-a0a34733" href="https://www.linkedin.com/in/heesung-shim-a0a34733/", target="blank">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <div class="btn-wrap">
+                <a href="mailto:hsshim@ucdavis.edu" class="btn-buy">Contact Me</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-4">
+            <div class="box">
+              <img src="assets/img/team/caitlin.png">
+              <h3>Caitlin Calsbeek</h3>
+              <a class="social-icon" data-tooltip="caitlin.calsbeek@gmail.com" href="mailto:caitlin.calsbeek@gmail.com">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="Ccalsbeek" href="https://github.com/ccalsbeek", target="blank">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="caitlin-calsbeek-93727a1a4" href="https://www.linkedin.com/in/caitlin-calsbeek-93727a1a4/" target="blank">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <div class="btn-wrap">
+                <a href="mailto:caitlin.calsbeek@gmail.com" class="btn-buy">Contact Me</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-4">
+            <div class="box">
+              <img src="assets/img/team/kathryn.png">
+              <h3>Kathryn Panger</h3>
+              <a class="social-icon" data-tooltip="kpanger88@gmail.com" href="mailto:kpanger88@gmail.com">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="KathrynPanger" href="https://github.com/KathrynPanger", target="blank">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="kathryn-panger" href="https://www.linkedin.com/in/kathryn-panger/", target="blank">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <div class="btn-wrap">
+                <a href="mailto:kpanger88@gmail.com" class="btn-buy">Contact Me</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-4">
+            <div class="box">
+              <img src="assets/img/team/seth.png">
+              <h3>Seth Abbott</h3>
+              <a class="social-icon" data-tooltip="sacstateseth@gmail.com" href="mailto:sacstateseth@gmail.com">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="SethAbott916" href="https://github.com/SethAbbott916", target="blank">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
+
+              <a class="social-icon" data-tooltip="seth-abbott-68789a7" href="https://www.linkedin.com/in/seth-abbott-68789a71/", target="blank">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <div class="btn-wrap">
+                <a href="mailto:sacstateseth@gmail.com" class="btn-buy">Contact Me</a>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+
+  </main><!-- End #main -->
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Machine Learning: Genre Classification</h3>
+      <div class="social-links">
+        <a href="https://github.com/KathrynPanger/classify-spotify", target="blank", class="github"><i class="bx bxl-github"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>William Forsyth, Caitlin Calsbeek, Kathryn Panger,<br>Danne Paredes, Heesung Shim, Seth Abbott<br></span></strong> All Rights Reserved
+      </div>
+
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/js/prism.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

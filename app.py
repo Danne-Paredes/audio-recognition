@@ -10,7 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Get the connection string for the database
-app.config['MONGO_URI'] = getenv('MONGO_URI', '')
+app.config['MONGO_URI'] = 'mongodb+srv://danne:pass@cluster0.hpipt.mongodb.net/FinalP?retryWrites=true'
 
 # Use PyMongo to establish Mongo connection
 mongo = PyMongo(app)
@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 @app.route("/")
 def index():
     # Find one record of data from the mongo database
-    destination_data = mongo.db.test.find_one()
+    destination_data = mongo.db.test.find()
 
     return render_template("index.html", song=destination_data)
 
@@ -26,7 +26,7 @@ def index():
 @app.route("/api")
 def api():
     # data1 = mongo["covid_db"].covid.find({}, {'_id': False})
-    data1= mongo.db.test.find({}, {'_id': False})
+    data= mongo.db.test.find({}, {'_id': False})
 
     cases = [case for case in data1]
     data = {
