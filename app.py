@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template
 
 
 # Create an instance of Flask
@@ -9,7 +9,7 @@ app = Flask(__name__)
 def index():
 
 
-    return render_template("index_1.html")
+    return render_template("index.html")
 
 
 

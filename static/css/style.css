@@ -440,7 +440,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.gif") top center;
+  background: url("../images/hero-bg.gif") top center;
   background-size: cover;
   position: relative;
 }
@@ -745,7 +745,7 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/api.gif") fixed center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/api.gif") fixed center center;
   background-size: cover;
   padding: 120px 0;
 }
@@ -824,7 +824,7 @@ section {
 # Cta sound-wave
 --------------------------------------------------------------*/
 .cta1 {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/sound_wave.gif") fixed center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/sound_wave.gif") fixed center center;
   background-size: cover;
   padding: 120px 0;
 }
@@ -876,7 +876,7 @@ section {
 # Cta librosa
 --------------------------------------------------------------*/
 .cta2 {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/librosa.png") fixed center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/librosa.png") fixed center center;
   background-size: cover;
   padding: 120px 0;
 }
@@ -989,7 +989,7 @@ section {
 # Counts
 --------------------------------------------------------------*/
 .counts {
-  background: url("../img/code_shot.jpg") center center no-repeat;
+  background: url("../images/code_shot.jpg") center center no-repeat;
   background-size: cover;
   padding: 80px 0 60px 0;
   position: relative;
