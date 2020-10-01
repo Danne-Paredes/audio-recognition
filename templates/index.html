@@ -9,28 +9,27 @@
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
-
   <!-- Favicons -->
-  <link rel="icon" href="{{ url_for('static',filename='images/favicon.png') }}">
-
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/icofont/icofont.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/boxicons/css/boxicons.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/remixicon/remixicon.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/venobox/venobox.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='vendor/owl.carousel/assets/owl.carousel.min.css') }}">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
   <!-- Template Main CSS File -->
-  <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static',filename='css/prism.css') }}" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/prism.css" rel="stylesheet">
 </head>
 
 <body>
@@ -42,15 +41,15 @@
       <div class="row justify-content-center">
         <div class="col-xl-9 d-flex align-items-center justify-content-between">
           <!-- <h1 class="logo"><a href="index.html">Machine Learning<br>Spotify Genres</a></h1> -->
-          <a href="#" class="logo"><img src="{{ url_for('static',filename='images/logo.png') }}" alt="" class="img-fluid"></a>
+          <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
 
           <nav class="nav-menu d-none d-lg-block">
             <ul>
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="index.html">Home</a></li>
               <li><a href="#brief">Brief</a></li>
               <li><a href="#spotify">Spotify API Call</a></li>
               <li><a href="#data_transformation">Data Transformation</a></li>
-              <li><a href="#data-pre-processing">Data Pre-processing</a></li>
+              <li><a href="#data-pre-processing">Data Generation with Librosa</a></li>
               <li><a href="#machine-learning">Machine Learning</a></li>
               <li><a href="#contact">The Team</a></li>
 
@@ -87,7 +86,7 @@
           <h2>Brief</h2>
           <p>We all know that musical genres are a way to tag and identify different types of music. But what most people don't know, is that basic genres have key defining features, that help us to identify them - and so the team's project idea was born...<br><br>The team's objective
             was to use machine learning to build its very own 'Trained Classifier', that would use machine learning to identify a given song’s musical genre. The musical genres in-scope for this project were: <b>Reggae Rock,
-            Jazz, Pop, Blues, Classical, Country, Disco, Hip-Hop.</b> </p>
+            Jazz, Pop, Blues, Classical, Country, Disco, Hip-Hop, Heavy Metal </b> </p>
         </div>
 
         <div class="row content">
@@ -97,13 +96,13 @@
             </p>
             <ul>
               <li><i class="ri-spotify-fill"></i> <b>Spotify API Call</b> - utilizing the 'spotipy' library to call Spotify's API in order to pull track information data (inc. URLs to audio clips) for the musical genres in-scope.<br><br><br></li>
-              <li><i class="ri-merge-cells-horizontal"></i> <b>Data Transformation</b> - transformating the API collected data, prior to data pre-processing.<br><br><br></li>
+              <li><i class="ri-merge-cells-horizontal"></i> <b>Data Transformation</b> - transforming the API collected data, prior to data pre-processing.<br><br><br></li>
               <li><i class="ri-voiceprint-fill"></i> <b>Pre-processing of data using Librosa</b> - downloading and extracting each audio clip's 6 key audio class features, before saving in a DataFrame, ready for machine learning.</b><br><br><br> </li>
               <li><i class="ri-eye-2-line"></i> <b>Machine learning using sklearn</b> - harnessing the power of sklearn to train our Trained Classifier.</b><br><br><br> </li>
               <li><i class="ri-bug-line"></i> <b>Testing</b> - finally a testing regime will let us analize weather the Trained Classifier.</b><br><br></li>
             </ul>
           </div>
-          <div class="image col-lg-6 pt-4 pt-lg-0" style='background-image: url("static/images/flow_chart.gif");'></div>
+          <div class="image col-lg-6 pt-4 pt-lg-0" style='background-image: url("assets/img/flow_chart.gif");'></div>
 
     </section><!-- End About Us Section -->
 
@@ -116,73 +115,73 @@
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://pandas.pydata.org/"><img src="{{ url_for('static',filename='images/clients/client-1.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://developer.spotify.com/"><img src="{{ url_for('static',filename='images/clients/client-2.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://matplotlib.org/"><img src="{{ url_for('static',filename='images/clients/client-3.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://numpy.org/"><img src="{{ url_for('static',filename='images/clients/client-4.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://www.tensorflow.org/"><img src="{{ url_for('static',filename='images/clients/client-5.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://scikit-learn.org/stable/"><img src="{{ url_for('static',filename='images/clients/client-6.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://keras.io/"><img src="{{ url_for('static',filename='images/clients/client-7.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://jupyter.org/"><img src="{{ url_for('static',filename='images/clients/client-8.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="{{ url_for('static',filename='images/clients/client-blank.png') }}" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-blank.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://colab.research.google.com/notebooks/intro.ipynb#recent=true"><img src="{{ url_for('static',filename='images/clients/client-10.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-10.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <a href="https://librosa.org/doc/latest/index.html"><img src="{{ url_for('static',filename='images/clients/client-9.png') }}" class="img-fluid" alt=""></a>
+              <img src="assets/img/clients/client-9.png" class="img-fluid" alt="">
             </div>
           </div>
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="{{ url_for('static',filename='images/clients/client-blank.png') }}" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-blank.png" class="img-fluid" alt="">
             </div>
           </div>
 
@@ -222,9 +221,9 @@
 
 
           <h2>Spotify API Call</h2>
-          <p>With a track catelog spanning in excess of 30 million songs, the team quickly reached
+          <p>With a track catalog spanning in excess of 30 million songs, the team quickly reached
             concensus that Spotify's API provided the most robust and well curated universe of track information and
-            was chosen. Additionally, Spotify also provides 30-sec samples for each cateloged song, thus providing the
+            was chosen. Additionally, Spotify also provides 30-sec samples for each cataloged song, thus providing the
             team with a source of track mp3 samples to use for trainined the Trained Classifier. Each team member chosen
             2 musical genres of personal interest, before completing steps to call Spotify's API -
           </p>
@@ -250,7 +249,7 @@
             <div class="icon-box mt-5">
               <i class="bx bx-data"></i>
               <h4>Step 2 - API call</h4>
-              <p>By using the 'reccomendation' parameter, the team were able to return track information for a chosen genre,
+              <p>By using the 'recommendation' parameter, the team were able to return track information for a chosen genre,
               whilst keeping the return limit to 100, in order to avoid reaching the Spotify API call limits and avoid timeouts.</p>
               <pre>
                 <code class="language-python">
@@ -267,7 +266,7 @@
             <div class="icon-box mt-5">
               <i class="bx bx-list-plus"></i>
               <h4>Step 3 - storage & verification of returned data</h4>
-              <p>Using Pandas, each track element (e.g 'artist') was saved to a namesake list, prior to relevant track information
+              <p>Using Pandas, each track element was saved to a namesake list, prior to relevant track information
               being written to a .csv file, for reference purposes.</p>
               <pre>
                 <code class="language-python">
@@ -328,7 +327,7 @@
 
           <div class="col-lg-3 col-6 text-center">
             <span data-toggle="counter-up">132,000</span>
-            <p>Collected Audio Features</p>
+            <p>Collected Audio Class Features</p>
           </div>
         </div>
 
@@ -348,7 +347,7 @@
             <div class="icon-box mt-5 mt-lg-0">
               <i class="bx bx-layer-minus"></i>
               <h4>Dropping duplicates</h4>
-              <p>Some audio tracks appear in Spotify's catelog multiple times for various valid reasons,
+              <p>Some audio tracks appear in Spotify's catalog multiple times for various valid reasons,
               these duplicates were dropped from their respective dataframes.</p>
             </div>
             <div class="icon-box mt-5">
@@ -370,7 +369,7 @@
               for Data Pre-processing.</p>
             </div>
           </div>
-          <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("static/images/code_shot_3.jpg");'></div>
+          <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/code_shot_3.jpg");'></div>
         </div>
 
       </div>
@@ -378,20 +377,20 @@
 
     <!-- ======= Cta Section ======= -->
     <section id="cta1" class="cta1">
-      <div class="container">
+          <div class="container">
 
-        <div class="row">
-          <div class="col-lg-9 text-center text-lg-left">
-            <h3>Librosa Facts</h3>
-            <p> <code class="language-python">librosa</code> is a python package for music and audio analysis.<br>
-              It provides the building blocks necessary to create music information retrieval systems."</p>
+            <div class="row">
+              <div class="col-lg-9 text-center text-lg-left">
+                <h3>Librosa Facts</h3>
+                <p> <code class="language-python">librosa</code> is a python package for music and audio analysis.<br>
+                  It provides the building blocks necessary to create music information retrieval systems."</p>
+              </div>
+              <div class="col-lg-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="https://librosa.org/doc/latest/index.html" target="blank">Learn more</a>
+              </div>
+            </div>
           </div>
-          <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="https://librosa.org/doc/latest/index.html" target="blank">Learn more</a>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
     <!-- End Cta Section -->
 
     <!-- ======= Data Generation with Librosa Section ======= -->
@@ -686,7 +685,7 @@
 
           </div>
 
-          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("static/images/data-pre-processing.jpg");'>&nbsp;</div>
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/data-pre-processing.jpg");'>&nbsp;</div>
         </div>
 
       </div>
@@ -694,21 +693,21 @@
 
     <!-- ======= Cta Section ======= -->
     <section id="cta2" class="cta2">
-      <div class="container">
+          <div class="container">
 
-        <div class="row">
-          <div class="col-lg-9 text-center text-lg-left">
-            <h3>Sklearn Fact Check</h3>
-            <p> <code class="language-python">Scikit-learn</code>is a free software machine learning library for the Python programming language.<br>
-              It features various classification, regression and clustering algorithms including support vector machines</p>
+            <div class="row">
+              <div class="col-lg-9 text-center text-lg-left">
+                <h3>Sklearn Fact Check</h3>
+                <p> <code class="language-python">Scikit-learn</code>is a free software machine learning library for the Python programming language.<br>
+                  It features various classification, regression and clustering algorithms including support vector machines</p>
+              </div>
+              <div class="col-lg-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="https://scikit-learn.org/stable/">Visit Sklearn</a>
+              </div>
+            </div>
           </div>
-          <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="https://scikit-learn.org/stable/">Visit Sklearn</a>
-          </div>
-        </div>
-      </div>
-    </section>
-<!-- End Cta Section -->
+        </section>
+    <!-- End Cta Section -->
 
     <!-- ======= Machine Learning ======= -->
     <section id="machine-learning" class="machine-learning">
@@ -1201,29 +1200,29 @@
 
           </div>
 
-          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("static/images/machine_learning_code_image.png");'>&nbsp;</div>
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/machine_learning_code_image.png");'>&nbsp;</div>
         </div>
 
       </div>
     </section><!-- End Data Generation with Librosa Section Section -->
-    
+
     <!-- ======= Cta Section ======= -->
     <section id="cta3" class="cta3">
-      <div class="container">
+          <div class="container">
 
-        <div class="row">
-          <div class="col-lg-9 text-center text-lg-left">
-            <h3>Tensorflow Fact Check</h3>
-            <p> <code class="language-python">TensorFlow</code> is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML powered applications.
+            <div class="row">
+              <div class="col-lg-9 text-center text-lg-left">
+                <h3>Tensorflow Fact Check</h3>
+                <p> <code class="language-python">TensorFlow</code> is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML powered applications.
 </p>
+              </div>
+              <div class="col-lg-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="https://www.tensorflow.org">Visit Tensorflow</a>
+              </div>
+            </div>
           </div>
-          <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="https://www.tensorflow.org">Visit Tensorflow</a>
-          </div>
-        </div>
-      </div>
-</section>
-<!-- End Cta Section -->
+    </section>
+    <!-- End Cta Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -1240,10 +1239,10 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="box">
-              <img src="{{ url_for('static',filename='images/team/william.png') }}">
+              <img src="assets/img/team/william.png">
               <h3>William Forsyth</h3>
               <div class="social">
-            <a class="social-icon" data-tooltip="williamtcforsysth@icloud.com" href="mailto:williamtcforsysth@icloud.com">
+            <a class="social-icon" data-tooltip="williamtcforsyth@icloud.com" href="mailto:williamtcforsysth@icloud.com">
               <i class="fa fa-envelope" aria-hidden="true"></i>
             </a>
 
@@ -1263,9 +1262,9 @@
 
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
             <div class="box">
-              <img src="{{ url_for('static',filename='images/team/danne.png') }}">
+              <img src="assets/img/team/danne.png">
               <h3>Danne Paredes</h3>
-              <a class="social-icon" data-tooltip="DanneParedes@gmail.com" href="#">
+              <a class="social-icon" data-tooltip="email@gmail.com" href="#">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
               </a>
 
@@ -1277,15 +1276,15 @@
                 <i class="fa fa-linkedin" aria-hidden="true"></i>
               </a>
               <div class="btn-wrap">
-                <a href="mailto:danneparedes@gmail.com" class="btn-buy">Contact Me</a>
+                <a href="#" class="btn-buy">Contact Me</a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
             <div class="box">
-              <img src="{{ url_for('static',filename='images/team/heesung.png') }}">
-              <h3>Heesung Shin</h3>
+              <img src="assets/img/team/heesung.png">
+              <h3>Heesung Shim</h3>
               <a class="social-icon" data-tooltip="hsshim@ucdavis.edu" href="mailto:hsshim@ucdavis.edu">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
               </a>
@@ -1305,7 +1304,7 @@
 
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-4">
             <div class="box">
-              <img src="{{ url_for('static',filename='images/team/caitlin.png') }}">
+              <img src="assets/img/team/caitlin.png">
               <h3>Caitlin Calsbeek</h3>
               <a class="social-icon" data-tooltip="caitlin.calsbeek@gmail.com" href="mailto:caitlin.calsbeek@gmail.com">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -1326,7 +1325,7 @@
 
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-4">
             <div class="box">
-              <img src="{{ url_for('static',filename='images/team/kathryn.png') }}">
+              <img src="assets/img/team/kathryn.png">
               <h3>Kathryn Panger</h3>
               <a class="social-icon" data-tooltip="kpanger88@gmail.com" href="mailto:kpanger88@gmail.com">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -1347,7 +1346,7 @@
 
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-4">
             <div class="box">
-              <img src="{{ url_for('static',filename='images/team/seth.png') }}">
+              <img src="assets/img/team/seth.png">
               <h3>Seth Abbott</h3>
               <a class="social-icon" data-tooltip="sacstateseth@gmail.com" href="mailto:sacstateseth@gmail.com">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -1365,11 +1364,7 @@
               </div>
             </div>
           </div>
-
-
-
         </div>
-
       </div>
     </section><!-- End Pricing Section -->
 
@@ -1393,20 +1388,19 @@
   <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/jquery.easing/jquery.easing.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/waypoints/jquery.waypoints.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/counterup/counterup.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/venobox/venobox.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='vendor/owl.carousel/owl.carousel.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='js/prism.js') }}"></script>
-
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/js/prism.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 
